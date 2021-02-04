@@ -4,11 +4,40 @@
 [![GitHub License](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/koinosclub/miner/blob/main/LICENSE.md)
 
 ## Table of Contents
+  - [Getting Started](#getting-started)
   - [Dependencies](#dependencies)
   - [Installation](#installation)
-  - [Getting Started](#getting-started)
-  - [Example Run](#example-run)
   - [FAQ](#FAQ)
+
+## Getting started
+
+You can run the miner using docker. Image size optimized to 250 MB:
+
+```
+docker run koinclub/miner:latest -u HIVE_USER
+```
+
+```
+Options:
+  -v, --version                        output the version number
+  -u, --user <user>                    Hive user
+  -e, --pool-endpoint <pool endpoint>  A mining pool endpoint (default: "https://api.koinos.club")
+  -p, --proof-period <seconds>         How often you want to submit a proof on average (default: "60")
+```
+
+**Hive user**: The `--user` argument specifies the recipient address, where the user will be rewarded with WKOINS.
+
+**Pool Endpoint**: The `--pool-endpoint` argument specifies the url to connect with the mining pool api.
+
+**Proof Period**: The `--proof-period` argument specifies the number of seconds on average the miner will attempt to mine and submit proofs. By default it is 60 seconds.
+
+Additional docker flags that can be useful
+
+```
+--cpus XX [Specify the amount of CPUs to use for this container
+--proof-period [How often you want to submit a proof on average (default: "60")]
+--name [Specify name of container]
+```
 
 ## Dependencies
 
@@ -53,7 +82,7 @@ CC=gcc-10 npm install
 ```
 ## RPM based distributions
 
-There is an all in one solution for RPM based distributions, that supply all the dependencies and the miner, as well as a sonfiguration file and systemd service.
+There're packages available for RPM based distributions, that supply all the dependencies and the miner, as well as a configuration file and systemd service.
 
 ## Fedora (tested on 32 and 33)
 
@@ -80,60 +109,6 @@ dnf install -y "https://github.com/joticajulian/koinos-miner/releases/download/0
 systemctl enable --now koinos-miner.service
 ```
 
-## Getting started
-
-You can view the CLI miner arguments by using `npm` like so:
-
-```
-npm start -- --help
-```
-
-And get the following output:
-
-```
-❯ npm start -- --help
-
-> koinos-miner@1.0.0 start /path/to/koinos-miner
-> node app.js "--help"
-
-Usage: app [OPTIONS]...
-
-Options:
-  -v, --version                        output the version number
-  -u, --user <user>                    Hive user
-  -e, --pool-endpoint <pool endpoint>  A mining pool endpoint (default: "https://api.koinos.club")
-  -p, --proof-period <seconds>         How often you want to submit a proof on average (default: "60")
-```
-
-**Hive user**: The `--user` argument specifies the recipient address, where the user will be rewarded with WKOINS.
-
-**Pool Endpoint**: The `--pool-endpoint` argument specifies the url to connect with the mining pool api.
-
-**Proof Period**: The `--proof-period` argument specifies the number of seconds on average the miner will attempt to mine and submit proofs. By default it is 60 seconds.
-
-## Example Run
-
-A simple example of running the miner:
-
-```
-❯ npm start -- -u jga
-```
-
-## Docker
-
-You can run the miner using docker. Image size optimized to 250 MB:
-
-```
-docker run koinclub/miner:latest -u HIVE_USER
-```
-Additional docker flags that can be useful
-
-```
---cpus XX [Specify the amount of CPUs to use for this container
---proof-period [How often you want to submit a proof on average (default: "60")]
---name [Specify name of container]
-```
-
 # FAQ
 
 ## Should I enter my private key in the miner?
@@ -151,14 +126,14 @@ Yes. You can set several miners. The mining pool will take care of assigning dif
 
 ## License
 
-Copyright 2020 Open Orchard, Inc.
+Copyright 2021 Koinos Club
 
-Koinos Miner is free software: you can redistribute it and/or modify
+Koinos Club Miner is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-Koinos Miner is distributed in the hope that it will be useful,
+Koinos Club Miner is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
